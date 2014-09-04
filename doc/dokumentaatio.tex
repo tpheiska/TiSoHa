@@ -1,0 +1,43 @@
+\documentclass[12pt,twoside,a4paper,leqno,titlepage]{article}
+
+\makeatletter
+\newcommand{\ps@pagenumberfoot}{
+\renewcommand{\@oddfoot}{\hfil\thepage}
+   \renewcommand{\@evenfoot}{\thepage\hfil}
+}
+\makeatother
+
+\input{Tyyli.sty}
+\pagestyle{pagenumberfoot}
+\title{Dokumentaatio}
+\author{Tomi Heiskanen}
+
+\begin{document}
+
+\maketitle
+
+\phantom{Böö}
+\thispagestyle{empty}
+\newpage
+
+\setcounter{page}{1}
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+\section{Johdanto}
+
+Työn aiheena on kurssikysely. Kurssikyselyn avulla kerätään oppilaiden 
+mielipiteitä ja ideoita kurssin kehittämiseksi. Näiden avulla opettaja voi 
+kehittää omaa opetusta ja käytettäviä menetelmiä. Oppilaat voivat vastata
+kyselyyn nimettömästi.
+
+Työ toteutetaan Helsingin yliopiston tietojenkäsittelytieteen laitoksen users-
+palvelimella Apache-palvelimen alla. Web-sovelluksen alustajärjestelmän tulee
+tukea php-kieltä ja PostgreSQL-tietokantaa.
+
+\section{Käyttötapaukset}
+
+
+
+\end{document}
