@@ -1,4 +1,4 @@
 TiSoHa
 ======
 
-Tietokanta Sovellus
+Harjoitustyö: Tietokanta Sovellus.
