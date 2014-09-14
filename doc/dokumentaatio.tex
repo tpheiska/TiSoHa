@@ -2,7 +2,7 @@
 
 \makeatletter
 \newcommand{\ps@pagenumberfoot}{
-\renewcommand{\@oddfoot}{\hfil\thepage}
+   \renewcommand{\@oddfoot}{\hfil\thepage}
    \renewcommand{\@evenfoot}{\thepage\hfil}
 }
 \makeatother
@@ -32,18 +32,12 @@ mielipiteitä ja ideoita kurssin kehittämiseksi. Näiden avulla opettaja voi
 kehittää omaa opetusta ja käytettäviä menetelmiä. Oppilaat voivat vastata
 kyselyyn nimettömästi.
 
-Työ toteutetaan Helsingin yliopiston tietojenkäsittelytieteen laitoksen users
+Työ toteutetaan Helsingin yliopiston tietojenkäsittelytieteen laitoksen users-
 palvelimella Apache-palvelimen alla. Web-sovelluksen alustajärjestelmän tulee
 tukea php-kieltä ja PostgreSQL-tietokantaa.
 
 \section{Käyttötapaukset}
 
-Oppilas haluaa antaa palautetta kurssista ja opetuksesta ja hän voi mennä www-
-sivuille ja kertoa sen nimiettömästi. Ohjelma tarkistaa oppilaan statuksen, eli
-onko hän kirjoilla opiskelijana ja onko hän kurssilla opiskelijana. Kurssin ulko-
-puolinen ei voi antaa palautetta kurssista. Kurssin pitäjä saa lukea palautteet,
-mutta hän ei voi yhdistää palautetta kehenkään oppilaaseen. Ulkopuoliset eivät
-voi lukea palautteita, mutta on mahdollista saada tietoa palautteiden määrästä
-ja voidaan laskea suhde palautteiden määrä/kurssille osallistjat.
+
 
 \end{document}
