@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Kyselyn muokkaus</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <ol>
+                <li>
+                    kysymys
+                    <form method="POST">
+                        <input type="radio" name="kysymys">0
+                        <input type="radio" name="kysymys">1
+                        <input type="radio" name="kysymys">2
+                        <input type="radio" name="kysymys">3
+                        <input type="radio" name="kysymys">4
+                        <input type="radio" name="kysymys">5
+                        <button type="submit" name="muuta">Muuta</button>
+                        <button type="submit" name="poista">Poista</button><br>
+                    </form>
+                </li>
+                <li>
+                    kysymys
+                    <form method="POST">
+                        <input type="text" name="vastaus">
+                        <button type="submit" name="muuta">Muuta</button>
+                        <button type="submit" name="poista">Poista</button><br>
+                    </form>
+                </li>
+            </ol>            
+        </div>
+        <br>
+        <div>
+            <h3>Lisää kysymyksiä</h3>
+            <form>
+                Kysymys:<br>
+                <input type="text" name="kysymys">?<br>
+                Vastaus:<br>
+                <input type="radio" name="vastausmuoto">Radio
+                <input type="radio" name="vastausmuoto">Tekstikenttä<br>
+                <button type="submit" name="lisaa">Lisää</button>
+            </form>
+        </div>
+        <br>
+        <div>
+            <form method="POST">
+                Kurssi:<br>
+                <input type="text" name="kurssi"><br>
+                Kurssikoodi:<br>
+                <input type="text" name="kurssikoodi"><br>
+                <button type="submit" name="tallenna">Tallenna kysely</button>
+            </form>
+            
+        </div>
+    </body>
+</html>

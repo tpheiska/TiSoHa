@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Kurssikysely</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/bootstrap-theme.css" rel="stylesheet">
+        <link href="../css/main.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="otsikko" style="width:1000px"><h1>Kurssikysely</h1></div>
+        <div id="esittely" style="width:1000px">Tältä sivulta pääset vastaamaan kurssikyselyyn
+            ja antamaan palautetta kurssin pitäjälle. Kurssia 
+            on annettava, jotta voidaan tarkistaa että kyselyyn vastaavat vain kurssille 
+            ilmoittautuneet. Kyselyyn vastataan muuten nimettömänä ja kurssin pitäjä ei saa 
+            tietoonsa kyselyyn vastanneiden ja palautteen antaneiden nimiä. Kurssikyselyjen
+            hallinta sivuille pääsee oikealla laidalla olevasta linkistä.</div>
+        
+        <div id="check" style="width:800px">
+            <ul>
+                <li>Kurssin nimi <button type="submit" name="1. kurssikoodi">Kyselyyn</button><a href="kysely.html">Kyselyyn</a></li>
+            </ul>
+            <form name="tarkistus" method="Post">
+                Kurssikoodi:<br>
+                <input type="text" name="kurssikoodi" value="kurssikoodi"><br>
+                <button type="submit" name="tarkista" value="Submit">Kyselyyn</button><br>
+            </form>
+        </div>
+        
+        <div id="hallinta" style="width:200px">
+            Kyselyjen hallinta
+            <a href="hallinta.html">Kirjaudu</a>.
+        </div>
+    </body>
+</html>

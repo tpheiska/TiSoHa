@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Kyselyjen hallinta</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Kurssikyselyjen hallinta</h1>
+        <div>
+            <table style="width:700px;" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>Kurssi</td><td>Kurssikoodi</td><td></td>
+                </tr>
+                <tr>
+                    <td>TiSo</td><td>koodi</td>
+                    <td>
+                        <button type="submit" name="muuta">Muuta</button>
+			<a href="muokkaus.html">Muuta</a>
+                        <button type="submit" name="poista">Poista</button>
+                        <button type="submit" name="aktivoi">Aktivoi</button>
+                    </td>
+                </tr>
+            </table>
+        </div><br>
+        <div>
+            <form method="POST">
+                <button type="submit" name="lisaaKysely">Lisää uusi kysely</button>
+            </form>
+        </div><br>
+        <div>
+            Lue palautteita tai tulosta tilastoja.<br>
+            Kurssikoodi:<br>
+            <input type="text" name="kurssikoodi"><br>
+            <button type="submit" name="palaute">Palautteet</button>
+            <button type="submit" name="tilastot">Tilastot</button><br>
+        </div>
+        <div>
+            <a href="index.html">Kirjaudu ulos</a>
+        </div>
+    </body>
+</html>

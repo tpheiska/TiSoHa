@@ -1,0 +1,42 @@
+CREATE TABLE Kysymykset
+(
+KysymysId SERIAL,
+Kysymys varchar(150),
+PRIMARY KEY (KysymysId)
+);
+CREATE TABLE Opiskelija
+(
+OpiskelijaNro SERIAL PRIMARY KEY,
+Etunimi varchar(20),
+Sukunimi varchar(30)
+);
+CREATE TABLE Opettaja
+(
+OpettajaNro SERIAL PRIMARY KEY,
+Etunimi varchar(20),
+Sukunimi varchar(30)
+);
+CREATE TABLE Kurssit
+(
+KurssiId SERIAL PRIMARY KEY,
+OpettajaNro integer,
+KurssinNimi varchar(40)
+);
+CREATE TABLE KurssiIlmoittautumiset
+(
+KurssiId integer,
+OpiskelijaNro integer,
+PRIMARY KEY (KurssiId, OpiskelijaNro)
+);
+CREATE TABLE Kysely
+(
+KurssiId SERIAL PRIMARY KEY,
+KysymysId1 integer,
+KysymysId2 integer,
+KysymysId3 integer,
+KysymysId4 integer,
+KysymysId5 integer,
+KysymysId6 integer,
+KysymysId7 integer,
+KysymysId8 integer
+);
