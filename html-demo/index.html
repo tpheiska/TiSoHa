@@ -24,18 +24,18 @@ and open the template in the editor.
         
         <div id="check" style="width:800px">
             <ul>
-                <li>Kurssin nimi <button type="submit" name="1. kurssikoodi">Kyselyyn</button><a href="kysely.html">Kyselyyn</a></li>
+                <li>Kurssin nimi <button type="submit">Kyselyyn</button></li>
             </ul>
-            <form name="tarkistus" method="Post">
+            <form action="../views/opiskelijaTarkistus.html" name="tarkistus" method="Post">
                 Kurssikoodi:<br>
-                <input type="text" name="kurssikoodi" value="kurssikoodi"><br>
-                <button type="submit" name="tarkista" value="Submit">Kyselyyn</button><br>
+                <input type="text" name="kurssikoodi"><br>
+                <button type="submit" formaction="../views/opiskelijaTarkistus.html">Kyselyyn</button><br>
             </form>
         </div>
         
         <div id="hallinta" style="width:200px">
             Kyselyjen hallinta
-            <a href="hallinta.html">Kirjaudu</a>.
+            <a HREF="../views/login.php">Kirjaudu</a>
         </div>
     </body>
 </html>

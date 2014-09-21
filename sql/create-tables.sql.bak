@@ -14,7 +14,9 @@ CREATE TABLE Opettaja
 (
 OpettajaNro SERIAL PRIMARY KEY,
 Etunimi varchar(20),
-Sukunimi varchar(30)
+Sukunimi varchar(30),
+Kayttajatunnus varchar(20),
+Salasana varchar(20)
 );
 CREATE TABLE Kurssit
 (
@@ -32,11 +34,19 @@ CREATE TABLE Kysely
 (
 KurssiId SERIAL PRIMARY KEY,
 KysymysId1 integer,
+VastausMuoto1 varchar(5),
 KysymysId2 integer,
+VastausMuoto2 varchar(5),
 KysymysId3 integer,
+VastausMuoto3 varchar(5),
 KysymysId4 integer,
+VastausMuoto4 varchar(5),
 KysymysId5 integer,
+VastausMuoto5 varchar(5),
 KysymysId6 integer,
+VastausMuoto6 varchar(5),
 KysymysId7 integer,
-KysymysId8 integer
+VastausMuoto7 varchar(5),
+KysymysId8 integer,
+VastausMuoto8 varchar(5)
 );
