@@ -1,9 +1,5 @@
 <?php
-  $tervehdys = "Moi maailma";
-?>
-<html>
-<head><title><?php echo $tervehdys; ?></title></head>
-<body>
-  <h1><?php echo $tervehdys; ?></h1>
-</body>
-</html>
+    require_once 'libs/functions.php';
+    require_once 'libs/models/kurssikyselyt.php';
+    
+    naytaNakyma('index.php', array('kurssikyselyt' => Kurssikyselyt::etsiAktiivisetKurssikyselyt()));

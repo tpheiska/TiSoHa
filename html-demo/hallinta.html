@@ -42,7 +42,11 @@ and open the template in the editor.
             <button type="submit" name="tilastot">Tilastot</button><br>
         </div>
         <div>
-            <a href="index.html">Kirjaudu ulos</a>
+            <a href="index.html">
+                <?php 
+                    unset($_SESSION["kirjautunut"]);
+                ?>Kirjaudu ulos
+            </a>
         </div>
     </body>
 </html>

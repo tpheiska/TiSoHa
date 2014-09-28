@@ -23,19 +23,25 @@ and open the template in the editor.
             hallinta sivuille pääsee oikealla laidalla olevasta linkistä.</div>
         
         <div id="check" style="width:800px">
+            <?php 
+                require_once = 'listaaKyselyt.php';
+                $kyselyt = listaaKysely('kylla');
+                
+            ?>
             <ul>
-                <li>Kurssin nimi <button type="submit">Kyselyyn</button></li>
+                <li><?php echo $kyselyt; ?> <button type="submit">Kyselyyn</button></li>
+                <?php endforeach; ?>
             </ul>
-            <form action="../views/opiskelijaTarkistus.html" name="tarkistus" method="Post">
+            <form action="../opiskelijaTarkistus.php" name="tarkistus" method="Post">
                 Kurssikoodi:<br>
                 <input type="text" name="kurssikoodi"><br>
-                <button type="submit" formaction="../views/opiskelijaTarkistus.html">Kyselyyn</button><br>
+                <button type="submit" formaction="../opiskelijaTarkistus.php">Kyselyyn</button><br>
             </form>
         </div>
         
         <div id="hallinta" style="width:200px">
             Kyselyjen hallinta
-            <a HREF="../views/login.php">Kirjaudu</a>
+            <a HREF="../login.php">Kirjaudu</a>
         </div>
     </body>
 </html>

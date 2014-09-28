@@ -33,20 +33,7 @@ PRIMARY KEY (KurssiId, OpiskelijaNro)
 CREATE TABLE Kysely
 (
 KurssiId SERIAL PRIMARY KEY,
+Aktiivinen varchar(5),
 KysymysId1 integer,
-VastausMuoto1 varchar(5),
-KysymysId2 integer,
-VastausMuoto2 varchar(5),
-KysymysId3 integer,
-VastausMuoto3 varchar(5),
-KysymysId4 integer,
-VastausMuoto4 varchar(5),
-KysymysId5 integer,
-VastausMuoto5 varchar(5),
-KysymysId6 integer,
-VastausMuoto6 varchar(5),
-KysymysId7 integer,
-VastausMuoto7 varchar(5),
-KysymysId8 integer,
-VastausMuoto8 varchar(5)
+KysymysId2 integer
 );

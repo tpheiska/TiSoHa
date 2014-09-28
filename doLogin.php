@@ -1,29 +1,37 @@
 <?php
-  
     session_start();
-    if (empty($_POST["ktunnus"])) {
-        naytaNakyma("login.html", array(
+    require_once 'libs/functions.php';
+    require_once 'libs/models/kayttaja.php';
+    
+    $ktunnus = $_POST["ktunnus"];
+    $salasana = $_POST["salasana"];
+    $kayttaja;
+    
+    if (empty($ktunnus)) {
+        naytaNakyma("login.php", array(
         'virhe' => "Kirjautuminen epäonnistui! Et antanut käyttäjätunnusta."));
     }
-    $kayttaja = $_POST["ktunnus"];
-
-    if (empty($_POST["salasana"])) {
+    
+    if (empty($salasana)) {
         naytaNakyma("login.php", array(
                     'ktunnus' => $ktunnus,
                     'virhe' => "Kirjautuminen epäonnistui! Et antanut salasanaa."));
     }
-    $salasana = $_POST["salasana"];
+    
     /* Tarkistetaan onko parametrina saatu oikeat tunnukset */
-    if ($ktunnus == "admin" && $salasana == "1234") {
-    /* Jos tunnus on oikea, ohjataan käyttäjä sopivalla HTTP-otsakkeella kissalistaan. */
-        $_SESSION['kirjautunut'] = $kayttaja;
-        header("Location: ../html-demo/hallinta.html");
+    $kayttaja = Kayttaja::etsiKayttajaTunnuksilla($ktunnus, $salasana);
+    if ($kayttaja) {
+    /* Jos tunnus on oikea, ohjataan käyttäjä hallinta sivulle. */
+        $_SESSION['kirjautunut'] = $ktunnus;
+        $opettaja = $kayttaja->getOpettajanro();
+        header('Location: hallinta.php?opettajanro=' . urlencode($opettaja));
     } else {
     /* Väärän tunnuksen syöttänyt saa eteensä kirjautumislomakkeen. */
         naytaNakyma("login.php", array(
                     /* Välitetään näkymälle tieto siitä, kuka yritti kirjautumista */
-                    'ktunnus' => $kayttaja,
+                    'ktunnus' => $ktunnus,
                     'virhe' => "Kirjautuminen epäonnistui! Antamasi tunnus tai salasana on väärä.", 
                     request));
   }
+  
   ?>
