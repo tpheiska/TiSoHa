@@ -8,16 +8,16 @@ class Kurssikyselyt {
     private $kurssinNimi;
     private $opettajaNro;
     private $aktiivinen;
-  
-    /* Etsitään kannasta aktiiviset kurssikyselyt */
+    
     public static function etsiAktiivisetKurssikyselyt() {
-        $sql = "SELECT Kysely.KurssiId, Kurssit.KurssinNimi from Kurssit, Kysely where Kurssit.KurssiId=Kysely.KurssiId and Aktiivinen = 'kylla'";
+        $sql = "SELECT Kysely.KurssiId, Kurssit.KurssinNimi FROM Kysely, Kurssit "
+                . "WHERE Kysely.Aktiivinen='kylla' AND Kysely.KurssiId=Kurssit.KurssiId;";
         $kysely = getTietokantayhteys()->prepare($sql);
         $kysely->execute(array());
-
+        
         $tulos = $kysely->fetchAll();
         
-        if(tulos == null) {
+        if($tulos == null) {
             return null;
         } else {
             $kurssikyselyt = array();
@@ -28,44 +28,29 @@ class Kurssikyselyt {
             
                 array_push($kurssikyselyt, $kurssikysely);
             }
-        }
-        return $kurssikyselyt;
-    }
-  
-    public static function etsiKurssikyselyt($opettaja) {
-        /*$sql = "SELECT Kysely.KurssiId, Kurssit.KurssinNimi, Aktiivinen from Kurssit, Kysely "
-                . " where Kysely.KurssiId=Kurssit.KurssiId and OpettajaNro= ? ";*/
-        $sql = "SELECT Kysely.KurssiId, Kurssit.KurssinNimi, Aktiivinen from Kurssit, Kysely, Opettaja "
-                . " where Kysely.KurssiId=Kurssit.KurssiId and Kayttajatunnus = ? and "
-                . "Opettaja.OpettajaNro = Kurssit.OpettajaNro ";
-        $kysely = getTietokantayhteys()->prepare($sql);
-        $kysely->execute(array($opettaja));
-
-        $tulos = $kysely->fetchAll();
-        
-        if(tulos == null) {
-            return null;
-        } else {
-            $kurssikyselyt = array();
-            foreach($tulos as $k){
-                $kurssikysely = new Kurssikyselyt();
-                $kurssikysely->setKurssiId ($k['kurssiid']);
-                $kurssikysely->setKurssinNimi($k['kurssinnimi']);
-                $kurssikysely->setAktiivinen($k['aktiivinen']);
-            
-                array_push($kurssikyselyt, $kurssikysely);
-            }
-
             return $kurssikyselyt;
-        }
+        }        
     }
     
-    function muutaAktiivisuus($aktiivisuus, $kurssiid) {
+    public static function tallennaKysymys($kurssiId, $kysymysId, $muoto) {
+        $sql = "INSERT INTO Kyselynkysymykset(KurssiId, KysymysId, muoto) VALUES(?, ?, ?);";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($kurssiId, $kysymysId, $muoto));
+    }
+    
+    public static function poistaKysely($kurssiId) {
+        $sql = "";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($kurssiid));
+        
+    }
+    
+    public static function muutaAktiivisuus($aktiivisuus, $kurssiid) {
         $sql = "UPDATE Kysely SET Aktiivinen= ? WHERE KurssiId = ?;";
         $kysely = getTietokantayhteys()->prepare($sql);
         $kysely->execute(array($aktiivisuus, $kurssiid));
     }
-  
+    
     function setKurssiId($kurssiId) {
         $this->kurssiId = $kurssiId;
     }

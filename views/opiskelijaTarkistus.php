@@ -3,10 +3,23 @@
 </div>
 <div>
     <form action="doCheck.php" method="POST">
-        Opiskelijanumero:<input type="text" name="opiskelijanumero"><br>
-        <input type="hidden" name="kurssikoodi" value='<?php $_GET['kurssiid'] ?>'>
-        <button type="submit" name="tarkista">
-            Tarkista
-        </button>
+        <table>
+            <tr>
+                <td align='right'>
+                   Opiskelijanumero:
+                </td>
+                <td align='left'>
+                    <input type="text" name="opiskelijanro">
+                </td> 
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" name="kurssiid" value="<?php echo $_GET['kurssiid']?>">
+                        Tarkista
+                    </button>
+                </td>
+            </tr>
+        </table>
     </form>
 </div>

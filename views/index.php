@@ -9,7 +9,7 @@
         <div id="check" style="width:800px">
             <ul>
                 <?php foreach($data->kurssikyselyt as $kurssikysely): ?>
-                <li><a href="opsiskelijaTarkistus.php?kurssiid=<?php echo $kurssikysely->getKurssiId();?>">
+                <li><a href="opiskelijaTarkistus.php?kurssiid=<?php echo $kurssikysely->getKurssiId();?>">
                     <?php echo $kurssikysely->getKurssiId();?></a>:
                     <?php echo $kurssikysely->getKurssinNimi() ;?>
                 </li>

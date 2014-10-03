@@ -5,23 +5,50 @@
         <tr>
            <td align='center'>Kurssikoodi</td><td align='center'>Kurssi</td><td></td>
         </tr>
-        <?php foreach($data->kurssikyselyt as $kurssikysely): ?>
+        <?php foreach($data->kurssit as $kurssi): ?>
         <tr>
-            <td align='center'><?php echo $kurssikysely->getKurssiId();?></td>
-            <td align='center'><?php echo $kurssikysely->getKurssinNimi();?></td>
-            <td>
-                <a href="muuta.php/?kurssiid=<?php echo $kurssikysely->getKurssiId();?>&opettajanro=<?php echo $kurssikysely->getOpettajaNro();?>&muuta=kylla">Muuta</a>
-                <a href="muuta.php/?kurssiid=<?php echo $kurssikysely->getKurssiId();?>&opettajanro=<?php echo $kurssikysely->getOpettajaNro();?>&poista=kylla">Poista</a>
-                <a href="muuta.php/?kurssiid=<?php echo $kurssikysely->getKurssiId();?>&opettajanro=<?php echo $_GET['opettajanro'];?>&aktivoi=kylla">Aktivoi</a>
-            </td>
+            <?php if($kurssi->getKyselyita() == 1): ?>
+                <td align='center'><?php echo $kurssi->getKurssiId();?></td>
+                <td align='center'><?php echo $kurssi->getKurssinNimi();?></td>
+                <td>
+                    <?php if($kurssi->getAktiivinen() == 'ei'): ?>
+                        <form method="POST" action="muuta.php" style="display: inline-block">
+                            <input type="hidden" value="<?php echo $kurssi->getKurssiId(); ?>" name="kurssiId">
+                            <input type="hidden" value="muuta" name="muuta">
+                            <button type="submit">Muuta</button>
+                        </form>
+                        <form method="POST" action="muuta.php" style="display: inline-block">
+                            <input type="hidden" value="<?php echo $kurssi->getKurssiId();?>" name="kurssiId">
+                            
+                            <input type="hidden" value="poista" name="poista">
+                            <button type="submit">Poista</button>
+                        </form>
+                        <form method="POST" action="muuta.php" style="display: inline-block">
+                            <input type="hidden" value="<?php echo $kurssi->getKurssiId();?>" name="kurssiId">
+                            <input type="hidden" value="ei" name="aktivoi">
+                            <button type="submit">Aktivoi</button>
+                        </form>
+                    <?php else: ?>
+                        <form method="POST" action="muuta.php">
+                            <input type="hidden" value="<?php echo $kurssi->getKurssiId();?>" name="kurssiId">
+                            <input type="hidden" value="kylla" name="aktivoi">
+                            <button type="submit">Sulje</button>
+                        </form>
+                    <?php endif; ?>
+                </td>
+            <?php else: ?>
+                <td align='center'><?php echo $kurssi->getKurssiId();?></td>
+                <td align='center'><?php echo $kurssi->getKurssinNimi();?></td>
+                <td>
+                    <form method="POST" action="lisaa.php">
+                        <input type="hidden" value="<?php echo $kurssi->getKurssiId();?>" name="kurssiId">
+                        <button type="submit">Lisää kysely</button>
+                    </form>
+                </td>
+            <?php endif; ?>
          </tr>
          <?php endforeach; ?>
     </table>
-</div><br>
-<div>
-    <form action="muokkaus.html" method="GET">
-        <button type="submit" name="lisaakysely">Lisää uusi kysely</button>
-    </form>
 </div><br>
 <div>
     Lue palautteita tai tulosta tilastoja.<br>

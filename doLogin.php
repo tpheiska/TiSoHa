@@ -23,8 +23,7 @@
     if ($kayttaja) {
     /* Jos tunnus on oikea, ohjataan käyttäjä hallinta sivulle. */
         $_SESSION['kirjautunut'] = $ktunnus;
-        $opettaja = $kayttaja->getOpettajanro();
-        header('Location: hallinta.php?opettajanro=' . urlencode($opettaja));
+        header('Location: hallinta.php');
     } else {
     /* Väärän tunnuksen syöttänyt saa eteensä kirjautumislomakkeen. */
         naytaNakyma("login.php", array(
@@ -33,5 +32,4 @@
                     'virhe' => "Kirjautuminen epäonnistui! Antamasi tunnus tai salasana on väärä.", 
                     request));
   }
-  
   ?>

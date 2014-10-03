@@ -1,20 +1,21 @@
 <?php
     session_start();
     require_once 'libs/functions.php';
+    require_once 'libs/models/kysymykset.php';
     require_once 'libs/models/kurssikyselyt.php';
     
-    $kurssiid = $_GET['kurssiid'];
-    $opettajanro = $_GET['opettajanro'];
-    $muuta = $_GET['muuta'];
-    $poista = $_GET['poista'];
-    $aktiivinen = $_GET['aktivoi'];
-    $opettaja = $_SESSION['kirjautunut'];
-    if($muuta != null) {
-        
+    $kurssiid = $_POST['kurssiId'];
+    $muuta = $_POST['muuta'];
+    $poista = $_POST['poista'];
+    $aktiivinen = $_POST['aktivoi'];
+    if($muuta == 'muuta') {
+        naytaNakyma('lisaa.php', array('kysymyksia' => Kysymys::etsiKysymykset()),
+               array('kurssikysely' => Kysymys::etsiKurssiKysely($kurssiid)));
     }
     
-    if($poista != null) {
-        
+    if($poista == 'poista') {
+        Kurssikyselyt::poistaKysely($kurssiId);
+        header('Location: hallinta.php');
     }
     
     if($aktiivinen != null) {
@@ -24,7 +25,5 @@
             $aktiivinen = 'kylla';
         Kurssikyselyt::muutaAktiivisuus($aktiivinen, $kurssiid);
     
-        header('Location: ../hallinta.php');
-    
-        //naytaNakyma('hallinta.php', array('kurssikyselyt' => Kurssikyselyt::etsiKurssikyselyt($opettaja)));
+        header('Location: hallinta.php');
     }

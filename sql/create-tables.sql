@@ -1,9 +1,3 @@
-CREATE TABLE Kysymykset
-(
-KysymysId SERIAL PRIMARY KEY,
-Kysymys varchar(150),
-Muoto varchar(6)
-);
 CREATE TABLE Opiskelija
 (
 OpiskelijaNro SERIAL PRIMARY KEY,
@@ -30,10 +24,20 @@ KurssiId integer,
 OpiskelijaNro integer,
 PRIMARY KEY (KurssiId, OpiskelijaNro)
 );
+CREATE TABLE Kysymykset
+(
+KysymysId SERIAL PRIMARY KEY,
+Kysymys varchar(150)
+);
 CREATE TABLE Kysely
 (
-KurssiId SERIAL PRIMARY KEY,
-Aktiivinen varchar(5),
-KysymysId1 integer,
-KysymysId2 integer
+KurssiId integer PRIMARY KEY,
+Aktiivinen varchar(5)
+);
+CREATE TABLE Kyselynkysymykset
+(
+KurssiId integer,
+KysymysId integer,
+Muoto varchar(6),
+PRIMARY KEY (KurssiId, KysymysId, Muoto)
 );

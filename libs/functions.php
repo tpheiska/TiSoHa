@@ -1,12 +1,9 @@
 <?php
-
-    require_once 'libs/models/kayttaja.php';
-    require_once 'libs/models/opiskelija.php';
-    require_once 'libs/models/opettaja.php';
     
 
-    function naytaNakyma($sivu, $data = array()) {
+    function naytaNakyma($sivu, $data = array(), $data2 = array()) {
         $data = (object)$data;
+        $data2 = (object)$data2;
         require "views/pohja.php";
         exit();
     }
