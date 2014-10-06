@@ -17,9 +17,8 @@
                             <input type="hidden" value="muuta" name="muuta">
                             <button type="submit">Muuta</button>
                         </form>
-                        <form method="POST" action="muuta.php" style="display: inline-block">
+                        <form method="POST" action="poistaKysely.php" style="display: inline-block">
                             <input type="hidden" value="<?php echo $kurssi->getKurssiId();?>" name="kurssiId">
-                            
                             <input type="hidden" value="poista" name="poista">
                             <button type="submit">Poista</button>
                         </form>

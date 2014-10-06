@@ -15,13 +15,13 @@ Salasana varchar(20)
 CREATE TABLE Kurssit
 (
 KurssiId SERIAL PRIMARY KEY,
-OpettajaNro integer,
+OpettajaNro integer references Opettaja(OpettajaNro),
 KurssinNimi varchar(40)
 );
 CREATE TABLE KurssiIlmoittautumiset
 (
-KurssiId integer,
-OpiskelijaNro integer,
+KurssiId integer references Kurssit(KurssiId),
+OpiskelijaNro integer references Opiskelija(OpiskelijaNro),
 PRIMARY KEY (KurssiId, OpiskelijaNro)
 );
 CREATE TABLE Kysymykset
@@ -31,13 +31,13 @@ Kysymys varchar(150)
 );
 CREATE TABLE Kysely
 (
-KurssiId integer PRIMARY KEY,
+KurssiId integer PRIMARY KEY references Kurssit(KurssiId),
 Aktiivinen varchar(5)
 );
 CREATE TABLE Kyselynkysymykset
 (
-KurssiId integer,
-KysymysId integer,
+KurssiId integer references Kurssit(KurssiId),
+KysymysId integer references Kysymykset(KysymysId),
 Muoto varchar(6),
 PRIMARY KEY (KurssiId, KysymysId, Muoto)
 );

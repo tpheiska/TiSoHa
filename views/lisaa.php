@@ -2,11 +2,13 @@
  require_once 'libs/functions.php';
  require_once 'libs/models/kysymykset.php';
  
-if($data2 == null): ?>
+if($data2->kurssikysely == null): ?>
     <h2>Uusi kysely</h2>
-<?php else: ?>
+<?php $uusikysely = "kylla"; 
+    else: ?>
     <h2>Muokkaa kyselyä</h2>
-<?php endif; 
+<?php $uusikysely = "ei";
+endif; 
 $kurssiId = $_POST['kurssiId']; ?>
 <div>
     <ol>
@@ -23,37 +25,44 @@ $kurssiId = $_POST['kurssiId']; ?>
                 <?php else: ?>
                     <input type="text">
                 <?php endif; ?>
-                <form action="muuta.php" method="POST" name="poistaKysymys" style="display: inline-block">
-                    <input type="hidden" name="kysymysId" value="<?php echo $kysymys->getKysymysId() ?>">
+                <form action="muuta.php" method="POST" style="display: inline-block">
+                    <input type="hidden" name="poista" value="poista">
+                    <input type="hidden" name="kurssiId" value="<?php echo $_POST['kurssiId']; ?>">
+                    <input type="hidden" name="kysymysId" value="<?php echo $kysymys->getKysymysId(); ?>">
+                    <input type="hidden" name="muoto" value="<?php echo $kysymys->getMuoto(); ?>">
                     <button type="submit">Poista</button>
                 </form>
             </li>
         <?php endforeach; ?>
-        <li>
-            <form action="tallenna.php" method="POST">
-                <table>
-                    <tr>
-                        <td>
-                            <select name="kysymysid">
-                                <?php foreach($data->kysymyksia as $kysymys): ?>
-                                <option value="<?php echo $kysymys->getKysymysId(); ?>"><?php echo $kysymys->getKysymys();?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="muoto" value="radio">Monivalinta
-                            <input type="radio" name="muoto" value="teksti">Tekstikenttä
-                        </td>
-                        <td>
-                            <button type="submit" name="kurssiid" value="<?php echo $_POST['kurssiId']; ?>">Lisää kysymys</button>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </li>
     </ol>
+    <form action="muuta.php" method="POST">
+        <table>
+            <tr>
+                <td>
+                    <select name="kysymysId">
+                        <?php foreach($data->kysymyksia as $kysymys): ?>
+                        <option value="<?php echo $kysymys->getKysymysId(); ?>"><?php echo $kysymys->getKysymys();?></option>
+                        <?php endforeach ?>
+                    </select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" name="muoto" value="radio">Monivalinta
+                    <input type="radio" name="muoto" value="teksti">Tekstikenttä
+                </td>
+                <td>
+                    <input type="hidden" name="uusikysely" value="<?php echo $uusikysely; ?>">
+                    <input type="hidden" name="lisaa" value="lisaa">
+                    <input type="hidden" name="kurssiId" value="<?php echo $_POST['kurssiId']; ?>">
+                    <button type="submit" name="submit">Lisää kysymys</button>
+                </td>
+            </tr>
+        </table>
+    </form>  
+</div>
+<div>
+    <a href="hallinta.php">Hallinta sivulle</a>    
 </div>
 

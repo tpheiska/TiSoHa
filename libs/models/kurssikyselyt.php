@@ -38,11 +38,25 @@ class Kurssikyselyt {
         $kysely->execute(array($kurssiId, $kysymysId, $muoto));
     }
     
-    public static function poistaKysely($kurssiId) {
-        $sql = "";
+    public static function poistaKysymys($kurssiId, $kysymysId, $muoto) {
+        $sql = "DELETE FROM Kyselynkysymykset WHERE KurssiId = ? and KysymysId = ? and Muoto = ?;";
         $kysely = getTietokantayhteys()->prepare($sql);
-        $kysely->execute(array($kurssiid));
-        
+        $kysely->execute(array($kurssiId, $kysymysId, $muoto));
+    }
+    
+    public static function lisaaKysely($kurssiId, $aktiivinen) {
+        $sql = "INSERT INTO Kysely(KurssiId, Aktiivinen) VALUES(?, ?);";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($kurssiId, $aktiivinen));
+    }
+    
+    public static function poistaKysely($kurssiId) {
+        $sql = "DELETE FROM Kyselynkysymykset WHERE KurssiId = ?;";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($kurssiId));
+        $sql = "DELETE FROM Kysely WHERE KurssiId = ?;";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($kurssiId)); 
     }
     
     public static function muutaAktiivisuus($aktiivisuus, $kurssiid) {
@@ -82,8 +96,4 @@ class Kurssikyselyt {
     function getAktiivinen() {
         return $this->aktiivinen;
     }
-
-
-    
-  
 }
