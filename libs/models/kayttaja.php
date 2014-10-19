@@ -8,7 +8,9 @@ class Kayttaja {
     private $password;
     private $opettajanro;
   
-  /* EtsitÃ¤Ã¤n kannasta kÃ¤yttÃ¤jÃ¤tunnuksella ja salasanalla kÃ¤yttÃ¤jÃ¤riviÃ¤ */
+    /** 
+    *Etsitään kannasta käyttäjätunnuksella ja salasanalla käyttäjäriviä.
+    */
     public static function etsiKayttajaTunnuksilla($ktunnus, $salasana) {
         $sql = "SELECT Kayttajatunnus, Salasana, OpettajaNro from Opettaja where Kayttajatunnus = ? AND Salasana = ? LIMIT 1";
         $kysely = getTietokantayhteys()->prepare($sql);

@@ -1,3 +1,5 @@
+DROP TABLE Vastaa;
+DROP TABLE Vastaukset;
 DROP TABLE Kyselynkysymykset;
 DROP TABLE Kysely;
 DROP TABLE Kysymykset;

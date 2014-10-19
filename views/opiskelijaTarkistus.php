@@ -1,7 +1,13 @@
 <div>
-    <?php echo $data->virhe; ?>
+    <?php if(!empty($data->virhe))
+        echo $data->virhe; ?>
 </div>
 <div>
+    <?php if($_GET['kurssiid'] == null)
+        $kurssiid = $data2->kurssiid;
+    else
+        $kurssiid = $_GET['kurssiid'];
+    ?>
     <form action="doCheck.php" method="POST">
         <table>
             <tr>
@@ -15,9 +21,8 @@
             <tr>
                 <td></td>
                 <td>
-                    <button type="submit" name="kurssiid" value="<?php echo $_GET['kurssiid']?>">
-                        Tarkista
-                    </button>
+                    <input type="hidden" value="<?php echo $kurssiid; ?>" name="kurssiid">
+                    <button type="submit" name="submit">Tarkista</button>
                 </td>
             </tr>
         </table>

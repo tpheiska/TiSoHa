@@ -1,41 +1,48 @@
-<?php session_start();
+<?php
  require_once 'libs/functions.php';
  require_once 'libs/models/kysymykset.php';
+ require_once 'libs/models/kurssikyselyt.php';
  
-if($data2->kurssikysely == null): ?>
+if(Kurssikyselyt::tarkistaKyselyt($_POST['kurssiId']) == null): ?>
     <h2>Uusi kysely</h2>
-<?php $uusikysely = "kylla"; 
-    else: ?>
+    <?php $uusikysely = "kylla"; 
+else: ?>
     <h2>Muokkaa kyselyä</h2>
-<?php $uusikysely = "ei";
-endif; 
+    <?php $uusikysely = "ei";
+endif;
 $kurssiId = $_POST['kurssiId']; ?>
 <div>
-    <ol>
-        <?php foreach($data2->kurssikysely as $kysymys): ?>
-            <li>
-                <?php echo $kysymys->getKysymys() ?><br>
-                <?php if($kysymys->getMuoto() == 'radio'): ?>
-                    <input type="radio">0
-                    <input type="radio">1
-                    <input type="radio">2
-                    <input type="radio">3
-                    <input type="radio">4
-                    <input type="radio">5
-                <?php else: ?>
-                    <input type="text">
-                <?php endif; ?>
-                <form action="muuta.php" method="POST" style="display: inline-block">
-                    <input type="hidden" name="poista" value="poista">
-                    <input type="hidden" name="kurssiId" value="<?php echo $_POST['kurssiId']; ?>">
-                    <input type="hidden" name="kysymysId" value="<?php echo $kysymys->getKysymysId(); ?>">
-                    <input type="hidden" name="muoto" value="<?php echo $kysymys->getMuoto(); ?>">
-                    <button type="submit">Poista</button>
-                </form>
-            </li>
-        <?php endforeach; ?>
-    </ol>
+    <?php if(!empty($data2->kurssikysely)): ?>
+        <ol>
+            <?php foreach($data2->kurssikysely as $kysymys): ?>
+                <li>
+                    <?php echo $kysymys->getKysymys() ?><br>
+                    <?php if($kysymys->getMuoto() == 'radio'): ?>
+                        <input type="radio">0
+                        <input type="radio">1
+                        <input type="radio">2
+                        <input type="radio">3
+                        <input type="radio">4
+                        <input type="radio">5
+                    <?php else: ?>
+                        <textarea rows="5" cols="30" maxlength="500"></textarea>
+                    <?php endif; ?>
+                    <form action="muuta.php" method="POST" style="display: inline-block">
+                        <input type="hidden" name="poista" value="poista">
+                        <input type="hidden" name="kurssiId" value="<?php echo $_POST['kurssiId']; ?>">
+                        <input type="hidden" name="kysymysId" value="<?php echo $kysymys->getKysymysId(); ?>">
+                        <input type="hidden" name="muoto" value="<?php echo $kysymys->getMuoto(); ?>">
+                        <button type="submit">Poista</button>
+                    </form>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    <?php else: ?>
+        
+    <?php endif; ?>
     <form action="muuta.php" method="POST">
+        <?php if(!empty($data3->virhe))
+            echo $data3->virhe; ?>
         <table>
             <tr>
                 <td>

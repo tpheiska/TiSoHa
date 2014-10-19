@@ -39,5 +39,21 @@ CREATE TABLE Kyselynkysymykset
 KurssiId integer references Kurssit(KurssiId),
 KysymysId integer references Kysymykset(KysymysId),
 Muoto varchar(6),
-PRIMARY KEY (KurssiId, KysymysId, Muoto)
+PRIMARY KEY (KurssiId, KysymysId)
 );
+CREATE TABLE Vastaukset
+(
+VastaajaId integer,
+KurssiId integer references Kurssit(KurssiId),
+KysymysId integer references Kysymykset(KysymysId),
+Muoto varchar(6),
+Vastaus varchar(1000),
+PRIMARY KEY (VastaajaId, KurssiId, KysymysId)
+)
+CREATE TABLE Vastaa
+(
+OpiskelijaNro integer references Opiskelija(OpiskelijaNro),
+KurssiId integer references Kurssit(KurssiId),
+Vastattu varchar(5),
+PRIMARY KEY (OpiskelijaNro, KurssiId)
+)

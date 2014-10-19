@@ -1,5 +1,6 @@
 <div>
-    <?php echo $data->virhe; ?>
+    <?php if(!empty($data->virhe))
+        echo $data->virhe; ?>
 </div>
 <div>
     <form action="doLogin.php" method="POST">

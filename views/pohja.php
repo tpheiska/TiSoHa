@@ -9,8 +9,7 @@
         <link href="css/main.css" rel="stylesheet">
     </head>
     <body>
-        <?php 
-            
+        <?php
             require 'views/'.$sivu; 
         ?>
     </body>

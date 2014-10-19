@@ -1,11 +1,14 @@
 <?php
-session_start();
+    session_start();
     require_once 'libs/functions.php';
     require_once 'libs/models/kysymykset.php';
 
-    if($_SESSION['kurssiId'] != null && $_POST['kurssiId'] == null) {
-        naytaNakyma('lisaa.php', array('kysymyksia' => Kysymys::etsiKysymykset()),
-                array('kurssikysely' => Kysymys::etsiKurssiKysely($_SESSION['kurssiId'])));
+    /**
+    *Tarkistetaan, onko opettaja kirjautuneena ja sen jälkeen näkymä uuden kyselyn
+    *luomiseksi. Jos ei ole kirjautunut, niin näytetään kirjautumislomake.
+    */
+    if(isset($_SESSION['kirjautunut'])) {
+        naytaNakymaH('lisaa.php', array('kysymyksia' => Kysymys::etsiKysymykset()));
+    } else {
+        header('Location: login.php');
     }
-    $kurssiId = $_POST['kurssiId'];
-    naytaNakyma('lisaa.php', array('kysymyksia' => Kysymys::etsiKysymykset()));

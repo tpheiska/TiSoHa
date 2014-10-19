@@ -1,4 +1,0 @@
-TiSoHa
-======
-
-Harjoitustyö: Tietokanta Sovellus.

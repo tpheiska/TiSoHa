@@ -7,9 +7,12 @@
         private $kysymys;
         private $muoto;
         
+        /**
+        *Haetaan kyselyn kysymykset.
+        */
         public static function etsiKurssiKysely($kurssiId) {
             $sql = "SELECT Kysymykset.KysymysId, Kysymys, Muoto FROM Kyselynkysymykset, Kysymykset WHERE KurssiId = ? "
-                    . "and Kyselynkysymykset.KysymysId=Kysymykset.KysymysId";
+                    . "and Kyselynkysymykset.KysymysId=Kysymykset.KysymysId ORDER BY Muoto;";
             $kysely = getTietokantayhteys()->prepare($sql);
             $kysely->execute(array($kurssiId));
 
@@ -31,6 +34,9 @@
             return $kysymykset;
         }
         
+        /**
+        *Haetaan kaikki kysymykset kysymystietokannasta.
+        */
         public static function etsiKysymykset() {
             $sql = "SELECT * FROM Kysymykset;";
             $kysely = getTietokantayhteys()->prepare($sql);
@@ -55,6 +61,9 @@
             
         }
         
+        /**
+        *Haetaan kurssinnimi kurssikoodin perusteella.
+        */
         public static function kurssinNimi($kurssiid) {
             $sql = "SELECT KurssinNimi FROM Kurssit WHERE KurssiId = ? LIMIT 1;";
             $kysely = getTietokantayhteys()->prepare($sql);

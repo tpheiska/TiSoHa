@@ -1,4 +1,8 @@
 <?php
-
+    session_start();
     require_once 'libs/functions.php';
+    
+    /**
+    *Näytetään kirjautumislomake.
+    */
     naytaNakyma('login.php');
